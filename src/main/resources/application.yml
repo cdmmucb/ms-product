@@ -1,0 +1,16 @@
+server:
+  port: 5000
+
+spring:
+  application:
+    name: ms-product
+
+eureka:
+  instance:
+    preferIpAddress: false
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
