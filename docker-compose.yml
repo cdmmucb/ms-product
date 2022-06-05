@@ -14,7 +14,7 @@ networks:
 
 services:
   ms-discovery:
-    image: serius69/ms-discovery:1.0.0
+    image: cdmmucb/ms-discovery:1.0.0
     mem_limit: 300m
     ports:
       - "8761:8761"
@@ -24,7 +24,7 @@ services:
       - software
       - arquitectura
   ms-gateway:
-    image: serius69/ms-gateway:1.0.0
+    image: cdmmucb/ms-gateway:1.0.0
     mem_limit: 300m
     ports:
       - "8282:8282"
@@ -37,7 +37,7 @@ services:
       - software
       - arquitectura
   ms-product:
-    image: serius69/ms-product:1.0.0
+    image: cdmmucb/ms-product:1.0.0
     mem_limit: 300m
     ports:
       - "5000:5000"
@@ -51,7 +51,7 @@ services:
       - software
       - arquitectura
   ms-checkout:
-    image: serius69/ms-checkout:1.0.0
+    image: cdmmucb/ms-checkout:1.0.0
     mem_limit: 300m
     ports:
       - "5001:5001"
@@ -65,7 +65,7 @@ services:
       - software
       - arquitectura
   ms-dashboard:
-    image: serius69/ms-dashboard:1.0.0
+    image: cdmmucb/ms-dashboard:1.0.0
     mem_limit: 300m
     ports:
       - "5002:5002"
@@ -79,7 +79,7 @@ services:
       - software
       - arquitectura
   frontend:
-    image: serius69/frontend:1.0.0
+    image: cdmmucb/frontend:1.0.0
     mem_limit: 300m
     ports:
       - "4200:4200"
