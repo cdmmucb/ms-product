@@ -14,7 +14,7 @@ networks:
 
 services:
   ms-discovery:
-    image: ms-discovery:1.0.0
+    image: serius69/ms-discovery:1.0.0
     mem_limit: 300m
     ports:
       - "8761:8761"
@@ -24,7 +24,7 @@ services:
       - software
       - arquitectura
   ms-gateway:
-    image: ms-gateway:1.0.0
+    image: serius69/ms-gateway:1.0.0
     mem_limit: 300m
     ports:
       - "8282:8282"
@@ -37,7 +37,7 @@ services:
       - software
       - arquitectura
   ms-product:
-    image: ms-product:1.0.0
+    image: serius69/ms-product:1.0.0
     mem_limit: 300m
     ports:
       - "5000:5000"
@@ -51,7 +51,7 @@ services:
       - software
       - arquitectura
   ms-checkout:
-    image: ms-checkout:1.0.0
+    image: serius69/ms-checkout:1.0.0
     mem_limit: 300m
     ports:
       - "5001:5001"
@@ -65,7 +65,7 @@ services:
       - software
       - arquitectura
   ms-dashboard:
-    image: ms-dashboard:1.0.0
+    image: serius69/ms-dashboard:1.0.0
     mem_limit: 300m
     ports:
       - "5002:5002"
@@ -78,28 +78,32 @@ services:
     networks:
       - software
       - arquitectura
-
-#DESDE AQUI HAY QUE CORREGIR
-#  ms-zipkin:
-#    image: ms-zipkin:1.0.0
-#    mem_limit: 300m
-#    ports:
-#      - "9091:9091"
-#    environment:
-#      - "EUREKA_URI=http://192.168.0.159:8761/eureka"
-    #depends_on:
-    #  ms-discovery:
-    #    condition: service_started
-#    networks:
-#      - software
-#      - arquitectura
-#  walikidb:
-#    image: cdmmucb/walikidb:1.0.0
-#    mem_limit: 300m
-#    ports:
-#      - "3600:3600"
-    # environment:
-    #- "EUREKA_URI=http://192.168.0.159:8761/eureka"
-#    networks:
-#      - software
-#      - arquitectura
+  frontend:
+    image: serius69/frontend:1.0.0
+    mem_limit: 300m
+    ports:
+      - "4200:4200"
+    environment:
+      - "EUREKA_URI=http://ms-discovery:8761/eureka"
+    depends_on:
+      ms-discovery:
+        condition: service_started
+    networks:
+      - software
+      - arquitectura
+  zipkin:
+    image: openzipkin/zipkin
+    mem_limit: 300m
+    ports:
+      - "9411:9411"
+    networks:
+      - software
+      - arquitectura
+  database:
+    image: cdmmucb/walikidb:1.0.0
+    mem_limit: 300m
+    ports:
+      - "3306:3306"
+    networks:
+      - software
+      - arquitectura
